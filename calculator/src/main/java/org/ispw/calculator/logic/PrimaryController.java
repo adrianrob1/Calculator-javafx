@@ -33,7 +33,7 @@ public class PrimaryController {
 	@FXML
 	private void multiply() {
 		if (state != State.INIT) {
-			if(state != State.NOOP)
+			if (state != State.NOOP)
 				equals();
 			state = State.MULTIPLY;
 			writing = State.INIT;
@@ -45,7 +45,7 @@ public class PrimaryController {
 	@FXML
 	private void divide() {
 		if (state != State.INIT) {
-			if(state != State.NOOP)
+			if (state != State.NOOP)
 				equals();
 			state = State.DIVIDE;
 			writing = State.INIT;
@@ -57,7 +57,7 @@ public class PrimaryController {
 	@FXML
 	private void sum() {
 		if (state != State.INIT) {
-			if(state != State.NOOP)
+			if (state != State.NOOP)
 				equals();
 			state = State.ADD;
 			writing = State.INIT;
@@ -69,7 +69,7 @@ public class PrimaryController {
 	@FXML
 	private void subtract() {
 		if (state != State.INIT) {
-			if(state != State.NOOP)
+			if (state != State.NOOP)
 				equals();
 			state = State.SUBTRACT;
 			writing = State.INIT;
@@ -83,8 +83,7 @@ public class PrimaryController {
 		if (stateNum == StateNumberButton.OVERWRITE) {
 			displayTextField.setText("0.");
 			stateNum = StateNumberButton.APPEND;
-		}
-		else if (state != State.INIT) {
+		} else if (state != State.INIT) {
 			dotSet = displayTextField.getText().contains(".");
 			if (!dotSet) {
 				dotSet = true;
@@ -155,24 +154,23 @@ public class PrimaryController {
 
 	@FXML
 	private void clear() {
-		if (state != State.INIT) {
-			state = State.INIT;
-			displayTextField.setText("0.0");
-			stateNum = StateNumberButton.OVERWRITE;
-			writing = State.INIT;
-		}
+		state = State.INIT;
+		displayTextField.setText("0.0");
+		stateNum = StateNumberButton.OVERWRITE;
+		writing = State.INIT;
 	}
-	
+
 	@FXML
 	private void operation() {
-		
+
 	}
 
 	private void displayResult(Double result) {
-		if (result.isNaN())
+		if (result.isNaN()) {
 			displayTextField.setText("Invalid operation");
-		else {
-			
+			state = State.INIT;
+		} else {
+
 			displayTextField.setText(String.valueOf(result.floatValue()));
 		}
 	}
