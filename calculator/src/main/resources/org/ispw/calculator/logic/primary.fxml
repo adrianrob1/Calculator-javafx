@@ -3,24 +3,28 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" prefHeight="578.0" prefWidth="400.0" spacing="20.0" style="-fx-background-color: #fff;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ispw.calculator.logic.PrimaryController">
+<VBox alignment="TOP_CENTER" prefHeight="578.0" prefWidth="400.0" spacing="20.0" style="-fx-background-color: #0F0F0F;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ispw.calculator.logic.PrimaryController">
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
    </padding>
    <children>
-      <JFXTextField fx:id="displayTextField" alignment="CENTER_RIGHT" editable="false" prefHeight="37.0" prefWidth="310.0" text="0.0">
+      <JFXTextField fx:id="displayTextField" alignment="CENTER_RIGHT" editable="false" focusColor="WHITE" prefHeight="54.0" prefWidth="360.0" text="0.0" unFocusColor="WHITE">
          <font>
-            <Font size="20.0" />
+            <Font size="35.0" />
          </font>
          <VBox.margin>
             <Insets top="20.0" />
          </VBox.margin>
+         <effect>
+            <ColorAdjust brightness="0.81" />
+         </effect>
       </JFXTextField>
       <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="350.0" prefWidth="280.0" VBox.vgrow="NEVER">
         <columnConstraints>
@@ -40,25 +44,83 @@
             <Insets bottom="20.0" left="20.0" right="20.0" top="30.0" />
          </VBox.margin>
          <children>
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="2" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="3" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="4" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="5" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="6" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="7" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="8" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="9" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="0" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#sum" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="+" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#subtract" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="-" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#multiply" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="×" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#divide" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="÷" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#equals" prefHeight="70.0" prefWidth="69.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="=" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#dot" prefHeight="70.0" prefWidth="69.0" style="-fx-background-color: #efefef; -fx-border-color: #000; -fx-border-style: solid centered;" text="." GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
-            <JFXButton contentDisplay="CENTER" onAction="#delete" prefHeight="70.0" prefWidth="69.0" style="-fx-background-color: #efefef; -fx-border-style: solid centered;" text="⌦" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <JFXButton contentDisplay="CENTER" onAction="#clear" prefHeight="70.0" prefWidth="70.0" style="-fx-background-color: #efefef; -fx-border-style: solid centered;" text="C" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#sqrt" prefHeight="70.0" prefWidth="69.0" style="-fx-background-color: #efefef; -fx-border-style: solid centered;" text="√" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="1" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="2" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="3" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="4" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="5" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="6" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="7" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="8" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="9" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton id="num" alignment="CENTER" contentDisplay="CENTER" onAction="#pressedNumber" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="0" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="30.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#sum" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="+" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="29.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#subtract" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="-" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="29.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#multiply" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="×" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="29.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#divide" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="÷" textFill="WHITE" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="29.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#equals" prefHeight="70.0" prefWidth="69.0" style="-fx-border-style: solid centered; -fx-background-color: #363636; -fx-border-color: #E3E3E3;" text="=" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="26.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#dot" prefHeight="70.0" prefWidth="80.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="." textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="29.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#delete" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="⌦" textFill="WHITE" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#clear" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="C" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#sqrt" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="√" textAlignment="CENTER" textFill="WHITE" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font></JFXButton>
+            <JFXButton alignment="CENTER" contentDisplay="CENTER" onAction="#operation" prefHeight="70.0" prefWidth="70.0" style="-fx-border-style: solid centered; -fx-background-color: #0F0F0F; -fx-border-color: #E3E3E3;" text="operation" textFill="WHITE" GridPane.columnIndex="3" />
          </children>
       </GridPane>
    </children>

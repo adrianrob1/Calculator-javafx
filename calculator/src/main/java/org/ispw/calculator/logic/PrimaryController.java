@@ -20,132 +20,160 @@ public class PrimaryController {
 
 	@FXML
 	private void sqrt() {
-		firstNum = Double.valueOf(displayTextField.getText());
-		displayTextField.setText(String.valueOf(Math.sqrt(firstNum)));
-		state = State.NOOP;
-		dotSet = true;
+		System.out.println(state);
+		if (state == State.NOOP) {
+			firstNum = Double.valueOf(displayTextField.getText());
+			double result = Math.sqrt(Double.valueOf(firstNum.toString()));
+			displayResult(result);
+			writing = State.INIT;
+			stateNum = StateNumberButton.OVERWRITE;
+		}
 	}
 
 	@FXML
 	private void multiply() {
-		dotSet = false;
-		state = State.MULTIPLY;
-		stateNum = StateNumberButton.OVERWRITE;
-		firstNum = Double.valueOf(displayTextField.getText());
-		displayTextField.setText("0.0");
+		if (state != State.INIT) {
+			if(state != State.NOOP)
+				equals();
+			state = State.MULTIPLY;
+			writing = State.INIT;
+			stateNum = StateNumberButton.OVERWRITE;
+			firstNum = Double.valueOf(displayTextField.getText());
+		}
 	}
 
 	@FXML
 	private void divide() {
-		dotSet = false;
-		state = State.DIVIDE;
-		stateNum = StateNumberButton.OVERWRITE;
-		firstNum = Double.valueOf(displayTextField.getText());
-		displayTextField.setText("0.0");
+		if (state != State.INIT) {
+			if(state != State.NOOP)
+				equals();
+			state = State.DIVIDE;
+			writing = State.INIT;
+			stateNum = StateNumberButton.OVERWRITE;
+			firstNum = Double.valueOf(displayTextField.getText());
+		}
 	}
 
 	@FXML
 	private void sum() {
-		dotSet = false;
-		state = State.ADD;
-		stateNum = StateNumberButton.OVERWRITE;
-		firstNum = Double.valueOf(displayTextField.getText());
-		displayTextField.setText("0.0");
+		if (state != State.INIT) {
+			if(state != State.NOOP)
+				equals();
+			state = State.ADD;
+			writing = State.INIT;
+			stateNum = StateNumberButton.OVERWRITE;
+			firstNum = Double.valueOf(displayTextField.getText());
+		}
 	}
 
 	@FXML
 	private void subtract() {
-		state = State.SUBTRACT;
-		stateNum = StateNumberButton.OVERWRITE;
-		firstNum = Double.valueOf(displayTextField.getText());
-		displayTextField.setText("0.0");
+		if (state != State.INIT) {
+			if(state != State.NOOP)
+				equals();
+			state = State.SUBTRACT;
+			writing = State.INIT;
+			stateNum = StateNumberButton.OVERWRITE;
+			firstNum = Double.valueOf(displayTextField.getText());
+		}
 	}
 
 	@FXML
 	private void dot() {
-		if (displayTextField.getText().equals("0.0") || displayTextField.getText().equals("Invalid!")) {
+		if (stateNum == StateNumberButton.OVERWRITE) {
 			displayTextField.setText("0.");
 			stateNum = StateNumberButton.APPEND;
-		} else if (!dotSet) {
-			displayTextField.appendText(".");
-			stateNum = StateNumberButton.APPEND;
 		}
-		dotSet = true;
+		else if (state != State.INIT) {
+			dotSet = displayTextField.getText().contains(".");
+			if (!dotSet) {
+				dotSet = true;
+				displayTextField.appendText(".");
+			}
+		}
 	}
 
 	@FXML
 	private void equals() {
-		if (displayTextField.getText().isEmpty() || firstNum == null)
-			return;
-		secondNum = Double.valueOf(displayTextField.getText());
-		Double result;
-		switch (state) {
-		case ADD:
-			result = firstNum + secondNum;
-			break;
-		case SUBTRACT:
-			result = firstNum - secondNum;
-			break;
-		case MULTIPLY:
-			result = firstNum * secondNum;
-			break;
-		case DIVIDE:
-			result = firstNum / secondNum;
-			break;
-		default:
-			result = Double.valueOf(0);
-		}
-		System.getLogger("calculator").log(System.Logger.Level.INFO,
-				firstNum + "  " + state + "  " + secondNum + "  = " + result);
-		dotSet = result.toString().contains(".");
-		state = State.NOOP;
-		stateNum = StateNumberButton.OVERWRITE;
-		if (result.isNaN()) {
-			displayTextField.setText("Invalid!");
+		System.out.println(state);
+		if (state != State.INIT) {
+			secondNum = Double.valueOf(displayTextField.getText());
+			Double result;
+			switch (state) {
+			case ADD:
+				result = firstNum + secondNum;
+				break;
+			case SUBTRACT:
+				result = firstNum - secondNum;
+				break;
+			case MULTIPLY:
+				result = firstNum * secondNum;
+				break;
+			case DIVIDE:
+				result = firstNum / secondNum;
+				break;
+			default:
+				return;
+			}
+			System.out.println(firstNum + " " + state + " " + secondNum + " = " + result);
+			state = State.NOOP;
 			writing = State.INIT;
-			return;
+			stateNum = StateNumberButton.OVERWRITE;
+			displayResult(result);
 		}
-		displayTextField.setText(String.valueOf(result));
-		writing = State.INIT;
 	}
 
 	@FXML
 	private void pressedNumber(ActionEvent event) {
+		if (stateNum == StateNumberButton.OVERWRITE)
+			displayTextField.clear();
+		if (state == State.INIT)
+			state = State.NOOP;
 		JFXButton numButton = (JFXButton) event.getSource();
-		if (stateNum == StateNumberButton.OVERWRITE
-				&& (displayTextField.getText().isEmpty() || Double.valueOf(displayTextField.getText()) == 0.0)) {
-			displayTextField.setText(numButton.getText());
+		if (numButton.getId().equals("num")) {
+			writing = State.INSERTING;
 			stateNum = StateNumberButton.APPEND;
-			writing = State.INSERTING;
-		} else {
 			displayTextField.appendText(numButton.getText());
-			writing = State.INSERTING;
 		}
 	}
 
 	@FXML
 	private void delete() {
-		if(writing == State.INIT) {
-			displayTextField.setText("0.0");
-			return;
+		System.out.println(state);
+		if (state != State.INIT) {
+			if (displayTextField.getText().length() <= 1) {
+				displayTextField.setText("0.0");
+				stateNum = StateNumberButton.OVERWRITE;
+			} else if (stateNum == StateNumberButton.OVERWRITE) {
+				displayTextField.setText("0.0");
+			} else {
+				String text = displayTextField.getText();
+				displayTextField.setText(text.substring(0, text.length() - 1));
+			}
 		}
-		if (displayTextField.getText().equals("Invalid!") || displayTextField.getText().equals("Infinite") 
-				|| displayTextField.getLength() == 1 || displayTextField.getText().equals("0.0")) {
-			displayTextField.setText("0.0");
-			return;
-		}
-		if (displayTextField.getText().charAt(displayTextField.getLength() - 1) == '.')
-			dotSet = false;
-		displayTextField.deleteText(displayTextField.getText().length() - 1, displayTextField.getText().length());
 	}
 
 	@FXML
 	private void clear() {
-		displayTextField.setText("0.0");
-		firstNum = null;
-		secondNum = null;
-		dotSet = false;
-		state = State.INIT;
-		stateNum = StateNumberButton.OVERWRITE;
+		if (state != State.INIT) {
+			state = State.INIT;
+			displayTextField.setText("0.0");
+			stateNum = StateNumberButton.OVERWRITE;
+			writing = State.INIT;
+		}
+	}
+	
+	@FXML
+	private void operation() {
+		
+	}
+
+	private void displayResult(Double result) {
+		if (result.isNaN())
+			displayTextField.setText("Invalid operation");
+		else {
+			
+			displayTextField.setText(String.valueOf(result.floatValue()));
+		}
 	}
 }
